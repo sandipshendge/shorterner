@@ -1,11 +1,14 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const connectDB = async()=>{
-    try {
-        await mongoose.connect("mongodb://sandip:sandip123@ac-gauqzqz-shard-00-00.e26yi8a.mongodb.net:27017,ac-gauqzqz-shard-00-01.e26yi8a.mongodb.net:27017,ac-gauqzqz-shard-00-02.e26yi8a.mongodb.net:27017/URL?ssl=true&replicaSet=atlas-r0a1ru-shard-0&authSource=admin&appName=Cluster0")
-        console.log("mongooose  coonnected")
-    } catch (error) {
-        console.log("mongooose not coonnected")
-    }
-}
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.log("MongoDB Not Connected");
+    console.log(error.message);
+    process.exit(1);
+  }
+};
+
 export default connectDB;

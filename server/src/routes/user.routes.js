@@ -1,10 +1,14 @@
-import express from "express"
-import { createUrl, getUrl } from "../controller/user.controller.js";
+import express from "express";
+import {
+  createUrl,
+  getUrl,
+  shortUrl,
+} from "../controller/user.controller.js";
 
-//import { createUrl, getUrl } from "../controller/user.controller";
+const router = express.Router();
 
-const userRouter = express.Router()
-    userRouter.post("/",createUrl)
-     userRouter.get("/",getUrl)
+router.post("/shorten", createUrl);
+router.get("/urls", getUrl);
+router.get("/:shortCode", shortUrl);
 
-export default userRouter;
+export default router;

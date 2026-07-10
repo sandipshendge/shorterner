@@ -1,13 +1,21 @@
 import express from "express"
 import mongoose  from "mongoose"
-const userModel = new mongoose.Schema( {
-url:{
-    type:String,
-    required:true,
-    trim:true,
-},
-},{
-    timestamps:true
-});
-const urlModel = mongoose.model("url",userModel)
+const urlSchema  = new mongoose.Schema(  {
+    originalUrl: {
+      type: String,
+      required: true,
+    },
+    shortCode: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    clicks: {
+      type: Number,
+      default: 0,
+    },
+  },
+  { timestamps: true }
+);
+const urlModel = mongoose.model("Url", urlSchema)
 export default urlModel;
